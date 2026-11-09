@@ -74,9 +74,11 @@ public class Automaton
      * Reset the automaton.
      */
     public void reset()
-    {
-        Arrays.fill(state, 0);
-        // Seed the automaton with a single 'on' cell.
-        state[numberOfCells / 2] = 1;
-    }
+{
+    Arrays.fill(state, 0);
+    // Q4: seed the automaton with several 'on' cells.
+    state[numberOfCells / 4] = 1;
+    state[numberOfCells / 2] = 1;
+    state[3 * numberOfCells / 4] = 1;
+}
 }
