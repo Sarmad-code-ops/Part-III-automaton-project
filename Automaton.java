@@ -45,16 +45,18 @@ public class Automaton
      * Update the automaton to its next state.
      */
     
-    public void update()
+ public void update()
 {
-    int left = 0;                  // old value of the cell to the left
-    int center, right;
+    int[] nextState = new int[state.length];
+    int left = 0;
+    int center = state[0];
     for(int i = 0; i < state.length; i++) {
-        center = state[i];         // save the old value BEFORE overwriting
-        right = i + 1 < state.length ? state[i + 1] : 0;
-        state[i] = (left + center + right) % 2;
-        left = center;             // old center becomes next cell's left
+        int right = i + 1 < state.length ? state[i + 1] : 0;   // Q9
+        nextState[i] = (left + center + right) % 2;
+        left = center;
+        center = right;
     }
+    state = nextState;
 }
     
     /**
