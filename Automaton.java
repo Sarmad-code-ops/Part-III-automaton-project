@@ -45,14 +45,14 @@ public class Automaton
      * Update the automaton to its next state.
      */
     
- public void update()
+public void update()
 {
     int[] nextState = new int[state.length];
     int left = 0;
     int center = state[0];
     for(int i = 0; i < state.length; i++) {
-        int right = i + 1 < state.length ? state[i + 1] : 0;   // Q9
-        nextState[i] = (left + center + right) % 2;
+        int right = i + 1 < state.length ? state[i + 1] : 0;
+        nextState[i] = calculateNextState(left, center, right);   // Q10
         left = center;
         center = right;
     }
@@ -69,5 +69,9 @@ public class Automaton
     state[numberOfCells / 4] = 1;
     state[numberOfCells / 2] = 1;
     state[3 * numberOfCells / 4] = 1;
+}
+private int calculateNextState(int left, int center, int right)
+{
+    return (left + center + right) % 2;   // Q10
 }
 }
